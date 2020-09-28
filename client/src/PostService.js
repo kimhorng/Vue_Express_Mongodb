@@ -20,35 +20,35 @@ class PostService {
       //             }
       //       });
       // }
-      static getPosts() {
-            return new Promise((resolve, reject) => {
-              axios
-                .get(url)
-                .then((res) => {
-                  const data = res.data;
-                  resolve(
-                    data.map((mytasks) => ({
-                      ...mytasks,
-                      createAt: new Date(mytasks.createAt),
-                    }))
-                  );
-                })
-                .catch((err) => {
-                  reject(err);
-                });
-            });
-          }
+      // static getPosts() {
+      //       return new Promise((resolve, reject) => {
+      //         axios
+      //           .get(url)
+      //           .then((res) => {
+      //             const data = res.data;
+      //             resolve(
+      //               data.map((mytasks) => ({
+      //                 ...mytasks,
+      //                 createAt: new Date(mytasks.createAt),
+      //               }))
+      //             );
+      //           })
+      //           .catch((err) => {
+      //             reject(err);
+      //           });
+      //       });
+      //     }
 
       // //Get Posts
-      // static async getPosts() {
-      // const response = await fetch(url);
-      // const data = await response.json();
+      static async getPosts() {
+      const response = await fetch(url);
+      const data = await response.json();
 
-      //       return data.map(mytask => ({
-      //             ...mytask,
-      //             createAt: new Date(mytask.createAt)
-      //       }));
-      // }
+            return data.map(mytask => ({
+                  ...mytask,
+                  createAt: new Date(mytask.createAt)
+            }));
+      }
       
       // Create Post
       static insertPost(task){
@@ -59,7 +59,7 @@ class PostService {
 
       // Delete Post
       static deletePost(id){
-            return axios.delete(`${url}${id}`);
+            return axios.delete(`${url}/${id}`);
       }
 }
 export default PostService;
